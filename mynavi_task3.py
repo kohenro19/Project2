@@ -83,8 +83,10 @@ def main():
                             ignore_index=True)
             #     driver.find_element_by_xpath("/html/body/div[1]/div[3]/form/div/nav[2]/ul/li[]/a").location_once_scrolled_into_view
             #     driver.find_element_by_xpath("/html/body/div[1]/div[3]/form/div/nav[2]/ul/li[*]/a").click()
-                driver.find_element_by_xpath("//a[@class='iconFont--arrowLeft']").location_once_scrolled_into_view
-                driver.find_element_by_xpath("//a[@class='iconFont--arrowLeft']").click
+                # driver.find_element_by_xpath("//a[@class='iconFont--arrowLeft']").location_once_scrolled_into_view
+                # driver.find_element_by_xpath("//a[@class='iconFont--arrowLeft']").click
+                url = driver.find_element_by_class_name("iconFont--arrowLeft").get_attribute("href")
+                driver.get(url) 
             except:
                 break
 
