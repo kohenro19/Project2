@@ -40,7 +40,7 @@ def searchWords():
     searchWords = []
 
     while checkStart.upper() != "Y" or checkStart.upper() != "Q":
-        checkStart = input("検索ツールを起動しますか。続ける場合：Y、中止する場合：Qと入力してください：")
+        checkStart = input("検索ツールを起動しますか。起動する場合：Y、中止する場合：Qと入力してください：")
         if checkStart.upper() == "Q":
             exit()
         elif checkStart.upper() == "Y":
@@ -49,10 +49,10 @@ def searchWords():
     while True:
         inputWord = input("検索ワードを入力してください。：")
         searchWords.append(inputWord)
-        checkStop = input("入力を続けますか。起動する場合：Y、中止する場合：Qと入力してください：")
+        checkStop = input("入力を続けますか。続ける場合：Y、中止する場合：Qと入力してください：")
         if checkStop.upper() == "Q":
             break
-
+    
     return searchWords
 
 # main処理
@@ -104,10 +104,7 @@ def main():
                             "項目B": "",
                             "項目C": ""}, 
                             ignore_index=True)
-            #     driver.find_element_by_xpath("/html/body/div[1]/div[3]/form/div/nav[2]/ul/li[]/a").location_once_scrolled_into_view
-            #     driver.find_element_by_xpath("/html/body/div[1]/div[3]/form/div/nav[2]/ul/li[*]/a").click()
-                # driver.find_element_by_xpath("//a[@class='iconFont--arrowLeft']").location_once_scrolled_into_view
-                # driver.find_element_by_xpath("//a[@class='iconFont--arrowLeft']").click
+                df.to_csv('to_csv_out.csv', mode="a")
                 url = driver.find_element_by_class_name("iconFont--arrowLeft").get_attribute("href")
                 driver.get(url) 
             except:
