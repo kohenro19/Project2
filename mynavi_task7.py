@@ -1,13 +1,18 @@
 import os
+import sys
 from selenium.webdriver import Chrome, ChromeOptions
 from selenium.webdriver import Firefox
 from selenium.webdriver.firefox.options import Options
 import time
 import pandas as pd
 import logging
+from _stat import filemode
+
+logger = logging.getLogger(__name__)
+# FORMAT = '%(asctime) %(message)s'
+logging.basicConfig(level='INFO', filename='test.log')
 
 # Chromeを起動する関数
-
 def set_driver(driver_path, headless_flg):
     if "chrome" in driver_path:
           options = ChromeOptions()
@@ -55,9 +60,26 @@ def searchWords():
     
     return searchWords
 
+# def recordLog():
+
+#     MYFORMAT='[%(asctime)s]%(filename)s(%(lineno)d): %(message)s'
+#     logging.basicConfig(
+#         filename='test.log',
+#         filemode='w', # Default is 'a'
+#         format=MYFORMAT, 
+#         datefmt='%Y-%m-%d %H:%M:%S', 
+#         level=logging.INFO)
+#     logging.debug('1. This is debug.')
+#     logging.info('2. This is info.')
+#     logging.warning('3. This is warning.')
+#     logging.error('4. This is error.')
+#     logging.critical('5. This is critical.')
+
 # main処理
 def main():
+
     try:
+        raise Exception('my exception')
         temp_keyword = []
         temp_keyword = searchWords()
 
@@ -107,8 +129,12 @@ def main():
                     driver.get(url) 
                 except:
                     break
-    except ValueError as err:
-        logger.exception('Raise Exception: %s', err)           
+    except:
+        logging.warning({
+            'action': 'error',
+            'status': 'fail',
+            'message': 'Exception happened'
+        })          
 
 # 直接起動された場合はmain()を起動(モジュールとして呼び出された場合は起動しないようにするため)
 if __name__ == "__main__":
